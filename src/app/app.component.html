@@ -59,8 +59,16 @@
       </div>
     </div>
 
-    <div class="row mb-3">
-      <button class="btn btn-outline-primary" type="submit">Get Issues</button>
+    <div *ngIf="!loading">
+      <div class="row mb-3">
+        <button class="btn btn-outline-primary" type="submit">
+          Get Issues
+        </button>
+      </div>
     </div>
   </div>
 </form>
+
+<div *ngIf="loading" style="text-align: center">
+  <app-spinner></app-spinner>
+</div>

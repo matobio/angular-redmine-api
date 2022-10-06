@@ -1,5 +1,5 @@
 {
-  "/issues.json*": {
+  "/issues*": {
     "target": "https://projects.imatia.com",
     "secure": false,
     "changeOrigin": true,

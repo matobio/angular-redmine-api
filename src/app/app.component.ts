@@ -2,6 +2,7 @@ import { RedmineIssue } from './redmine/redmine-issue';
 import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { RedmineService } from './redmine/redmine.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -9,8 +10,11 @@ import { RedmineService } from './redmine/redmine.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit, OnDestroy {
+  subscription: Subscription = new Subscription();
+
   title = 'redmine-tracker';
   submitted = false;
+  loading = false;
 
   redmineForm!: FormGroup;
 
@@ -37,15 +41,26 @@ export class AppComponent implements OnInit, OnDestroy {
       let redmine_api_key: string = this.redmineForm.value.redmine_api_key;
 
       let issues: RedmineIssue[] = [];
-      this.redmineService
-        .getIssuesData(redmine_url, redmine_api_key)
-        .subscribe((data) => {
+
+      this.loading = true;
+      this.redmineService.getIssuesData(redmine_url, redmine_api_key).subscribe(
+        (data) => {
           issues = data;
+          this.loading = false;
           console.log(issues[0]);
-        });
+        },
+        (error) => {
+          this.loading = false;
+        }
+      );
     }
   }
   ngOnDestroy(): void {
     this.submitted = false;
+    this.loading = false;
+
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 }
