@@ -1,0 +1,66 @@
+<form id="form" [formGroup]="redmineForm" (submit)="onSubmit()">
+  <div class="container">
+    <div class="row mb-3">
+      <span>Redmine URL</span>
+      <input
+        id="redmine_url"
+        type="text"
+        placeholder="https://projects.imatia.com/"
+        class="input form-control"
+        formControlName="redmine_url"
+      />
+      <span
+        class="text-danger"
+        *ngIf="
+          (registerFormControl.redmine_url.touched || submitted) &&
+          registerFormControl.redmine_url.errors?.required
+        "
+      >
+        Redmine URL is required
+      </span>
+    </div>
+    <div class="row mb-3">
+      <span>Redmine API key</span>
+      <input
+        id="redmine_api_key"
+        type="text"
+        placeholder="65a4ads5414ads8aae6d48961589959877bf6cc55746"
+        class="input form-control has-validation"
+        formControlName="redmine_api_key"
+      />
+      <span
+        class="text-danger"
+        *ngIf="
+          (registerFormControl.redmine_api_key.touched || submitted) &&
+          registerFormControl.redmine_api_key.errors?.required
+        "
+      >
+        Redmine API key is required
+      </span>
+    </div>
+    <div class="row mb-3">
+      <div class="col">
+        <span>From</span>
+        <input
+          id="from"
+          type="date"
+          class="form-control"
+          formControlName="from"
+        />
+      </div>
+      <div class="col">
+        <span>Until</span>
+        <input
+          id="until"
+          type="date"
+          class="form-control"
+          formControlName="until"
+        />
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <button class="btn btn-outline-primary" type="submit">Get Issues</button>
+    </div>
+  </div>
+</form>
