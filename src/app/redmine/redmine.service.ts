@@ -15,15 +15,8 @@ export class RedmineService {
 
     let headers = {
       Authorization: 'Basic ' + btoa(apiKey + ':any_password'),
-      // Host: 'projects.imatia.com',
-      // Accept: '*/*',
-      // 'Referrer-Policy': 'strict-origin-when-cross-origin',
-      'Access-Control-Allow-Origin': 'http://localhost:4200/',
+      'Access-Control-Allow-Origin': '*',
     };
-
-    // return this.http.get<RedmineIssue[]>(
-    //   'https://ng-course-receipt-book-default-rtdb.europe-west1.firebasedatabase.app/recipes.json'
-    // );
 
     return this.http.get<RedmineIssue[]>(url + 'issues.json', {
       headers: headers,
