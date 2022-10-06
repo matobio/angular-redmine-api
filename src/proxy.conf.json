@@ -1,0 +1,8 @@
+{
+  "/issues.json*": {
+    "target": "https://projects.imatia.com",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}

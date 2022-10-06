@@ -73,7 +73,8 @@
               "browserTarget": "redmine-tracker:build:production"
             },
             "development": {
-              "browserTarget": "redmine-tracker:build:development"
+              "browserTarget": "redmine-tracker:build:development",
+              "proxyConfig": "src/proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"

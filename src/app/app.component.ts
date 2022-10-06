@@ -41,8 +41,8 @@ export class AppComponent implements OnInit, OnDestroy {
         .getIssuesData(redmine_url, redmine_api_key)
         .subscribe((data) => {
           issues = data;
+          console.log(issues[0]);
         });
-      console.log(issues[0]);
     }
   }
   ngOnDestroy(): void {
