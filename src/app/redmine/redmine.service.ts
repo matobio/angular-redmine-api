@@ -18,8 +18,8 @@ export class RedmineService {
     }
   ): Observable<RedmineIssue[]> {
     let url = redmineUrl.endsWith('/')
-      ? 'http://cors.io/?' + redmineUrl
-      : 'http://cors.io/?' + redmineUrl + '/';
+      ? 'https://cors.io/?' + redmineUrl
+      : 'https://cors.io/?' + redmineUrl + '/';
     // let url = '';
     url = url + 'issues.json';
 
