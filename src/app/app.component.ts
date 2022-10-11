@@ -20,6 +20,7 @@ export class AppComponent implements OnInit, OnDestroy {
   @ViewChild('submitButton', { static: false })
   button!: ElementRef;
 
+  redmine_url = 'https://projects.imatia.com';
   subscription: Subscription = new Subscription();
 
   title = 'redmine-tracker';
