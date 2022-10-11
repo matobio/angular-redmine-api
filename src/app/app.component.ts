@@ -1,5 +1,12 @@
 import { RedmineIssue } from './redmine/redmine-issue';
-import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnDestroy,
+  OnInit,
+  Renderer2,
+  ViewChild,
+} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { RedmineService } from './redmine/redmine.service';
 import { Subscription } from 'rxjs';
@@ -10,15 +17,23 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit, OnDestroy {
+  @ViewChild('submitButton', { static: false })
+  button!: ElementRef;
+
   subscription: Subscription = new Subscription();
 
   title = 'redmine-tracker';
   submitted = false;
   loading = false;
+  hoverState: boolean = true;
+  hover: boolean = false;
 
   redmineForm!: FormGroup;
 
-  constructor(private redmineService: RedmineService) {}
+  constructor(
+    private redmineService: RedmineService,
+    private renderer: Renderer2
+  ) {}
   ngOnInit(): void {
     this.initForm();
   }
@@ -46,14 +61,20 @@ export class AppComponent implements OnInit, OnDestroy {
       this.redmineService.getIssuesData(redmine_url, redmine_api_key).subscribe(
         (data) => {
           issues = data;
-          this.loading = false;
+          this.setInitialState();
           console.log(issues[0]);
         },
         (error) => {
-          this.loading = false;
+          this.setInitialState();
         }
       );
     }
+  }
+
+  setInitialState() {
+    this.loading = false;
+    this.hover = false;
+    this.submitted = false;
   }
   ngOnDestroy(): void {
     this.submitted = false;
@@ -61,6 +82,20 @@ export class AppComponent implements OnInit, OnDestroy {
 
     if (this.subscription) {
       this.subscription.unsubscribe();
+    }
+  }
+
+  onMouseOver(event: any): void {
+    this.hover = true;
+
+    if (this.redmineForm.invalid) {
+      this.renderer.setStyle(
+        this.button.nativeElement,
+        'margin',
+        this.hoverState ? '0px 300px 0px 0px' : '0px 0px 0px 300px'
+      );
+
+      this.hoverState = !this.hoverState;
     }
   }
 }

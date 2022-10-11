@@ -12,7 +12,7 @@
       <span
         class="text-danger"
         *ngIf="
-          (registerFormControl.redmine_url.touched || submitted) &&
+          (registerFormControl.redmine_url.touched || submitted || hover) &&
           registerFormControl.redmine_url.errors?.required
         "
       >
@@ -31,7 +31,7 @@
       <span
         class="text-danger"
         *ngIf="
-          (registerFormControl.redmine_api_key.touched || submitted) &&
+          (registerFormControl.redmine_api_key.touched || submitted || hover) &&
           registerFormControl.redmine_api_key.errors?.required
         "
       >
@@ -61,9 +61,16 @@
 
     <div *ngIf="!loading">
       <div class="row mb-3">
-        <button class="btn btn-outline-primary" type="submit">
-          Get Issues
-        </button>
+        <div class="col mb-3 text-center">
+          <button
+            #submitButton
+            class="btn btn-outline-primary center"
+            type="submit"
+            (mouseover)="onMouseOver($event)"
+          >
+            Get Issues
+          </button>
+        </div>
       </div>
     </div>
   </div>
