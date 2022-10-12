@@ -81,3 +81,7 @@
 <div *ngIf="loading" style="text-align: center">
   <app-spinner></app-spinner>
 </div>
+
+<div class="container">
+  <ngx-json-viewer [json]="issues" [expanded]="false"></ngx-json-viewer>
+</div>

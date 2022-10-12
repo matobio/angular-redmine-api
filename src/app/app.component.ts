@@ -28,6 +28,7 @@ export class AppComponent implements OnInit, OnDestroy {
   loading = false;
   hoverState: boolean = true;
   hover: boolean = false;
+  issues: RedmineIssue[] = [];
 
   redmineForm!: FormGroup;
 
@@ -56,14 +57,14 @@ export class AppComponent implements OnInit, OnDestroy {
       let redmine_url: string = this.redmineForm.value.redmine_url;
       let redmine_api_key: string = this.redmineForm.value.redmine_api_key;
 
-      let issues: RedmineIssue[] = [];
+      this.issues = [];
 
       this.loading = true;
       this.redmineService.getIssuesData(redmine_url, redmine_api_key).subscribe(
         (data) => {
-          issues = data;
+          this.issues = data;
           this.setInitialState();
-          console.log(issues[0]);
+          console.log(this.issues[0]);
         },
         (error) => {
           this.setInitialState();

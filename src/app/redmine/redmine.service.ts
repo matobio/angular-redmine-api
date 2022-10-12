@@ -17,11 +17,8 @@ export class RedmineService {
       sort?: ':asc' | ':desc';
     }
   ): Observable<RedmineIssue[]> {
-    // let url = redmineUrl.endsWith('/')
-    //   ? 'https://cors.io/?' + redmineUrl
-    //   : 'https://cors.io/?' + redmineUrl + '/';
-    let url = redmineUrl.endsWith('/') ? redmineUrl : redmineUrl + '/';
-    // let url = '';
+    // let url = redmineUrl.endsWith('/') ? redmineUrl : redmineUrl + '/';
+    let url = '';
     url = url + 'issues.json';
 
     var params = '';

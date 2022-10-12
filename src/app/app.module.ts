@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SpinnerComponent } from './share/spinner/spinner/spinner.component';
+import { NgxJsonViewerModule } from 'ngx-json-viewer';
 
 @NgModule({
   declarations: [AppComponent, SpinnerComponent],
@@ -15,6 +16,7 @@ import { SpinnerComponent } from './share/spinner/spinner/spinner.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NgxJsonViewerModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
