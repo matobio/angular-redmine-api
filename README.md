@@ -11,4 +11,5 @@ App URL: https://matobio.github.io/angular-redmine-api/
 
 ## Launch
 
+> npm install
 > npm start
